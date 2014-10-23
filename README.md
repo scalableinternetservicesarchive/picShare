@@ -15,6 +15,9 @@ Vikas Gupta ([@gvikas](https://github.com/gvikas))
 
 ![gvikas photo]
 
+Varun Sivapalan ([@sivapalan](https://github.com/sivapalan/))  
+![sivapalan photo](https://avatars2.githubusercontent.com/u/5470233?v=2&s=120)
+
 ## Reviewers
   
 ![amutz photo](https://avatars3.githubusercontent.com/u/919763?v=2&s=120)
