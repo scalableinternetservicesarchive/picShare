@@ -11,9 +11,11 @@ This ection of the README provide a general overview of the team's project:
 ## picShare Team: 
 
 Vikas Gupta ([@gvikas](https://github.com/gvikas))
+![gvikas photo](https://avatars3.githubusercontent.com/u/3737348?v=2&s=400)
 
+Audun Brandt ([@adabra](https://github.com/adabra))
+![adabra photo](https://avatars3.githubusercontent.com/u/3696402?v=2&s=460)
 
-![gvikas photo]
 
 Varun Sivapalan ([@sivapalan](https://github.com/sivapalan/))  
 ![sivapalan photo](https://avatars2.githubusercontent.com/u/5470233?v=2&s=120)
