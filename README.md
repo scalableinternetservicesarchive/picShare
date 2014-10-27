@@ -19,6 +19,9 @@ Audun Brandt ([@adabra](https://github.com/adabra))
 Varun Sivapalan ([@sivapalan](https://github.com/sivapalan/))  
 ![sivapalan photo](https://avatars2.githubusercontent.com/u/5470233?v=2&s=120)
 
+Erik G. Jansen ([@janzh](https://github.com/janz/))  
+![jansen photo](https://avatars3.githubusercontent.com/u/3796719?v=2&s=460)
+
 ## Reviewers
   
 ![amutz photo](https://avatars3.githubusercontent.com/u/919763?v=2&s=120)
