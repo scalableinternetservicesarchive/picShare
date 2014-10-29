@@ -15,7 +15,6 @@ class CreatePosts < ActiveRecord::Migration
     create_table :postVotes do |t|
       t.belongs_to :user
       t.belongs_to :post
-      t.vote :integer
 
       t.timestamps
     end
