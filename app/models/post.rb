@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
 	has_many :users, through: :postVotes
 end
 
-class postVotes < ActiveRecord::Base
+class PostVotes < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :post
 end

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :xml
 
   def index
     @posts = Post.all
