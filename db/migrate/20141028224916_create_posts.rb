@@ -7,6 +7,7 @@ class CreatePosts < ActiveRecord::Migration
       t.integer :upvotecount
       t.integer :downvotecount
       t.datetime :postdate
+      t.integer :user_id
 
       t.timestamps
     end
