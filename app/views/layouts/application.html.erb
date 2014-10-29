@@ -2,7 +2,9 @@
 <html>
 <head>
   <title>Picshare</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
@@ -15,9 +17,10 @@
     <% if user_signed_in? %>
         <%= link_to 'Log Out', destroy_user_session_path,
                     method: :delete, data: { confirm: 'Are you sure?' } %>
-     <% else %>
-         <%= link_to 'Log In', new_user_session_path %> |
-         <%= link_to 'Sign Up', new_user_registration_path %>
+     <% else %> 
+        <h4> Please log in to use picShare</h4>
+         <%= link_to 'Log In', new_user_session_path, class: 'btn btn-default' %>    
+         <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-default' %>
      <% end %>
   </div>
 
