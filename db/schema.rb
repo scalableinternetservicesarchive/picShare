@@ -13,6 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20141028224916) do
 
+  create_table "postVotes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -20,6 +27,7 @@ ActiveRecord::Schema.define(version: 20141028224916) do
     t.integer  "upvotecount"
     t.integer  "downvotecount"
     t.datetime "postdate"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
