@@ -20,7 +20,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    #@post = Post.new(post_params)
+    #@post.user = current_user
+    @post = current_user.posts.build(post_params)
     @post.save
     respond_with(@post)
   end
@@ -41,6 +43,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :description, :image_url, :upvotecount, :downvotecount, :postdate)
+      params.require(:post).permit(:title, :description, :image_url, :upvotecount, :downvotecount, :postdate, :user_id)
     end
 end

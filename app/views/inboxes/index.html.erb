@@ -1,0 +1,23 @@
+<h1>Listing inboxes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inboxes.each do |inbox| %>
+      <tr>
+        <td><%= link_to 'Show', inbox %></td>
+        <td><%= link_to 'Edit', edit_inbox_path(inbox) %></td>
+        <td><%= link_to 'Destroy', inbox, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Inbox', new_inbox_path %>

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :inboxes
+
+  resources :post_votes
+
   resources :posts
 
   get 'home/inbox'

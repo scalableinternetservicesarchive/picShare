@@ -11,9 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029231045) do
+ActiveRecord::Schema.define(version: 20141104010016) do
 
-  create_table "postVotes", force: true do |t|
+  create_table "inboxes", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "post_votes", force: true do |t|
     t.integer  "user_id"
     t.integer  "post_id"
     t.datetime "created_at"
