@@ -8,8 +8,10 @@
 users = User.create([
 	{ email: 'testA@mail.com', password: '12345678', password_confirmation: '12345678'},
 	{ email: 'testB@mail.com', password: '23456789', password_confirmation: '23456789'},
-	{ email: 'testC@mail.com', password: '34567890', password_confirmation: '34567890'}])
-
+	{ email: 'testC@mail.com', password: '34567890', password_confirmation: '34567890'},
+	{ email: 'testD@mail.com', password: '12345678', password_confirmation: '12345678'},
+	{ email: 'testE@mail.com', password: '12345678', password_confirmation: '12345678'}])
+=begin
 posts = Post.create([
   {user_id: 1, title: "Tittel_A1", description: "Desc_A1", image_url: "a1.jpg", upvotecount: 0, downvotecount: 0, postdate: Time.now},
   {user_id: 1, title: "Tittel_A2", description: "Desc_A2", image_url: "a2.jpg", upvotecount: 0, downvotecount: 0, postdate: Time.now},
@@ -33,3 +35,4 @@ post_votes = PostVote.create([
 	{user_id: 3, post_id: 2, vote: 0},
 	{user_id: 3, post_id: 5, vote: 0},
 	{user_id: 3, post_id: 6, vote: 0}])
+=end

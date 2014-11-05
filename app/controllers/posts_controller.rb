@@ -24,6 +24,11 @@ class PostsController < ApplicationController
     #@post.user = current_user
     @post = current_user.posts.build(post_params)
     @post.save
+    @users = User.all
+    @users.each do |user|  
+      @post_vote = PostVote.create(user_id: user.id, post_id: @post.id, vote: 0)
+      @post_vote.save
+    end
     respond_with(@post)
   end
 
