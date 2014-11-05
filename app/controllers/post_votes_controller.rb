@@ -1,5 +1,6 @@
 class PostVotesController < ApplicationController
   before_action :set_post_vote, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :xml
 
   def index
     @post_votes = PostVote.all
@@ -40,6 +41,7 @@ class PostVotesController < ApplicationController
     end
 
     def post_vote_params
-      params[:post_vote]
+      #params[:post_vote]
+      params.require(:post_vote).permit(:user_id, :post_id, :vote)
     end
 end

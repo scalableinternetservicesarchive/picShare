@@ -1,0 +1,7 @@
+
+<% if user_signed_in?%>
+	<p><h1><%= current_user.email %></h1></p>
+
+	<%= link_to 'Inbox', home_inbox_path, class: 'btn btn-default' %>    
+	<%= link_to 'New post', home_new_path, class: 'btn btn-default' %>
+<% end %>

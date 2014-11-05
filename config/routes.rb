@@ -1,11 +1,20 @@
 Rails.application.routes.draw do
+
   resources :inboxes
 
   resources :post_votes
 
   resources :posts
 
+  get 'home/inbox'
+
+  get 'home/new'
+
+
   get 'welcome/index'
+
+  get 'home/index'
+  resources :home
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
