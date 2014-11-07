@@ -16,7 +16,9 @@
   <img src=<%= @post.image_url %>>
   </p>
 </p>
-
+<p>
+  <%= image_tag @post.image.url %>
+</p>
 <p>
   <strong>Upvotecount:</strong>
   <%= @post.upvotecount %>
