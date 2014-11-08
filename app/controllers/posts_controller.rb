@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     #@post.user = current_user
     @post = current_user.posts.build(post_params)
     @post.save
-    @users = pickNewReceivers(@post.user_id, @post.id, 4)
+    @users = pickNewReceivers(@post.user_id, @post.id, User.count - 1)
     @users.each do |user|  
       @post_vote = PostVote.create(user_id: user.id, post_id: @post.id, vote: 0)
       @post_vote.save
@@ -55,16 +55,10 @@ class PostsController < ApplicationController
       @postVotes = PostVote.where(post_id: post_id)
       @alreadyReceived = @postVotes.map {|postVote| postVote.user_id}
 
-      @potentialReceivers = User.where.not(id: @alreadyReceived)
-      
-      # Creator of post is marked, to ensure it does not get the its own post
-      @potentialReceivers.each do |receiver|
-        if receiver.id == post_owner
-          @potentialReceivers.delete(receiver)
-        end
-      end
-
-      @receivers = @potentialReceivers.sample(nrOfReceivers)
+      # Ensure that potential receivers exludes: owner of post and past receivers
+      potentialReceivers = User.where.not("id = ? and id = ?", @alreadyReceived, post_owner)
+    
+      @receivers = potentialReceivers.sample(nrOfReceivers)
       return @receivers
     end
 end
