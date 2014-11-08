@@ -24,7 +24,7 @@ class PostsController < ApplicationController
     #@post.user = current_user
     @post = current_user.posts.build(post_params)
     @post.save
-    @users = User.all
+    @users = pickNewReceivers(@post.user_id, @post.id, 4)
     @users.each do |user|  
       @post_vote = PostVote.create(user_id: user.id, post_id: @post.id, vote: 0)
       @post_vote.save
@@ -49,5 +49,22 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:title, :description, :image_url, :upvotecount, :downvotecount, :postdate, :user_id)
+    end
+
+    def pickNewReceivers(post_owner, post_id, nrOfReceivers)
+      @postVotes = PostVote.where(post_id: post_id)
+      @alreadyReceived = @postVotes.map {|postVote| postVote.user_id}
+
+      @potentialReceivers = User.where.not(id: @alreadyReceived)
+      
+      # Creator of post is marked, to ensure it does not get the its own post
+      @potentialReceivers.each do |receiver|
+        if receiver.id == post_owner
+          @potentialReceivers.delete(receiver)
+        end
+      end
+
+      @receivers = @potentialReceivers.sample(nrOfReceivers)
+      return @receivers
     end
 end
