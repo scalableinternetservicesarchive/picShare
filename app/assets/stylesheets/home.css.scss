@@ -4,19 +4,21 @@
 
 #myposts_Container {
 	position: relative;
+	text-align: left;
 }
 
 .infoRow {
 	padding: 0.5em;
+	height: 50px
 }
 
 .infoCol {
 	display: inline-block;
 	padding: 0.5em;
-	width: 200px;
-	height: 20px;
+	width: 120px;
+
 
 	p {
-		font: italic bold 12px Georgia, serif;
+		font: italic bold 12px Georgia, sans-serif;
 	}
 }
