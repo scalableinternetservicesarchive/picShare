@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get 'home/new'
 
+  get 'home/myposts'
+
 
   get 'welcome/index'
 

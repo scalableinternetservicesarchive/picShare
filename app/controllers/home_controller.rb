@@ -7,6 +7,9 @@ class HomeController < ApplicationController
   	redirect_to '/posts/new'
   end
 
+  def myposts
+  end
+
   def index
   end
 end
