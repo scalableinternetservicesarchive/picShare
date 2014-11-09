@@ -1,3 +1,22 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#myposts_Container {
+	position: relative;
+}
+
+.infoRow {
+	padding: 0.5em;
+}
+
+.infoCol {
+	display: inline-block;
+	padding: 0.5em;
+	width: 200px;
+	height: 20px;
+
+	p {
+		font: italic bold 12px Georgia, serif;
+	}
+}
