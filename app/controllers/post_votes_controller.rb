@@ -32,7 +32,7 @@ class PostVotesController < ApplicationController
     if @post_vote.vote == 1
       @post.update(upvotecount: @post.upvotecount + 1) 
       
-      @receivers = pickNewReceivers(@owner, @post_vote.post_id, 2)
+      @receivers = pickReceivers(@owner, @post_vote.post_id, 2)
         if @receivers != nil
           @receivers.each do |receiver|
             @post_vote = PostVote.create(user_id: receiver.id, post_id: @post.id, vote: 0)
@@ -62,7 +62,7 @@ class PostVotesController < ApplicationController
       params.require(:post_vote).permit(:user_id, :post_id, :vote)
     end
 
-    def pickNewReceivers(post_owner, post_id, nrOfReceivers)
+    def pickReceivers(post_owner, post_id, nrOfReceivers)
        # Ensure that potential receivers exludes: owner of post and past receivers
       @postVotes = PostVote.where(post_id: post_id)
       @alreadyReceived = @postVotes.map {|postVote| postVote.user_id}
