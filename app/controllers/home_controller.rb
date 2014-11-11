@@ -7,6 +7,10 @@ class HomeController < ApplicationController
   	redirect_to '/posts/new'
   end
 
+  def myposts
+  	@posts = Post.where(user_id: current_user)
+  end
+
   def index
   end
 end
