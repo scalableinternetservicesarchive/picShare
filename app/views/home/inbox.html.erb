@@ -1,9 +1,17 @@
+<head>
+<style>
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+</style>
+</head>
 <h1>Home#inbox</h1>
 <p>Find me in app/views/home/inbox.html.erb</p>
 <table>
   <thead>
     <tr>
-      <th>Post Title</th>
+      <th>Title</th>
       <th>Image</th>
       <th colspan="3"></th>
     </tr>
@@ -14,7 +22,7 @@
       <tr>
         <td><%= post_vote.post.title %></td>
         <td><%= image_tag post_vote.post.image.url(:thumb) %></td>
-        <td><%= link_to 'Vote', edit_post_vote_path(post_vote) %></td>
+        <td><%= link_to 'Vote', edit_post_vote_path(post_vote), class: 'btn btn-default' %></td>
       </tr>
     <% end %>
   </tbody>
