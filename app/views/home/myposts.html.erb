@@ -5,7 +5,7 @@
 		<div class='infoCol'><p>Title of post:</p></div>
 		<div class='infoCol'><p>Description:</p></div>
 		<div class='infoCol'><p>Post was posted at:</p></div>
-		<div class='infoCol'><p>Image URL:</p></div>
+		<div class='infoCol'><p>Image:</p></div>
 		<div class='infoCol'><p>Number of upvotes: </p></div>
 		<div class='infoCol'><p>Number of downvotes: </p></div>
 	</div>
@@ -14,7 +14,7 @@
 		<div class='infoCol'><%= post.title %></div>
 		<div class='infoCol'><%= post.description %></div>
 		<div class='infoCol'><%= post.postdate %></div>
-		<div class='infoCol'><%= post.image_url %></div>
+		<div class='infoCol'><%= image_tag post.image.url(:thumb) %></div>
 		<div class='infoCol'><%= post.upvotecount %></div>
 		<div class='infoCol'><%= post.downvotecount %></div>
 	</div>
