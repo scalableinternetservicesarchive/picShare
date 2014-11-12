@@ -6,15 +6,18 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @post_vote.user.email %>
+  <strong>Image:</strong>
+  <%= image_tag @post_vote.post.image.url %>
 </p>
 
+<p>
+  <strong>Description:</strong>
+  <%= @post_vote.post.description %>
+</p>
 <p>
   <strong>Vote:</strong>
   <%= @post_vote.vote %>
 </p>
-
 
 <%= link_to 'Edit', edit_post_vote_path(@post_vote) %> |
 <%= link_to 'Back', post_votes_path %>
