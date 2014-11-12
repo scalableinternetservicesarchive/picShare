@@ -24,9 +24,9 @@ class PostsController < ApplicationController
     @params[:postdate] = Time.now
     @post = current_user.posts.build(@params)
     @post.save
-    @users = pickReceivers(@post.user_id, @post.id, User.count - 1)
-    @users.each do |user|  
-      @post_vote = PostVote.create(user_id: user.id, post_id: @post.id, vote: 0)
+    @receivers = pickReceivers(@post.user_id, $number_of_sends_at_create_post)
+    @receivers.each do |receiver|  
+      @post_vote = PostVote.create(user_id: receiver.id, post_id: @post.id, vote: 0)
       @post_vote.save
     end
     respond_with(@post)
@@ -51,14 +51,15 @@ class PostsController < ApplicationController
       params.require(:post).permit(:title, :description, :image, :upvotecount, :downvotecount, :postdate, :user_id)
     end
 
-    def pickReceivers(post_owner, post_id, nrOfReceivers)
-      # Ensure that potential receivers exludes: owner of post and past receivers
-      @postVotes = PostVote.where(post_id: post_id)
-      @alreadyReceived = @postVotes.map {|postVote| postVote.user_id}
-      @alreadyReceived.push(post_owner)
-
-      potentialReceivers = User.where.not(id: @alreadyReceived)
-      @receivers = potentialReceivers.sample(nrOfReceivers)
+    def pickReceivers(post_owner, nrOfReceivers)
+      # Ensure that potential receivers exludes owner of post
+      potentialReceivers = User.where.not(id: post_owner)
+      if potentialReceivers.count >= nrOfReceivers
+        @receivers = potentialReceivers.sample(nrOfReceivers)
+      end
+    else if potentialReceivers.count < nrOfReceivers and potentialReceivers > 0
+      @receivers = potentialReceivers.sample(potentialReceivers.count)
+    end
 
       return @receivers
     end
