@@ -32,7 +32,7 @@ class PostVotesController < ApplicationController
     if @post_vote.vote == 1
       @post.update(upvotecount: @post.upvotecount + 1) 
       
-      @receivers = pickReceivers(@owner, @post_vote.post_id, 2)
+      @receivers = pickReceivers(@owner, @post_vote.post_id, $number_of_sends_at_upvote_post)
         if @receivers != nil
           @receivers.each do |receiver|
             @post_vote = PostVote.create(user_id: receiver.id, post_id: @post.id, vote: 0)
