@@ -32,7 +32,7 @@ class PostVotesController < ApplicationController
     if @post_vote.vote == 1
       @post.update(upvotecount: @post.upvotecount + 1) 
       
-      @receivers = pickReceivers(@owner, @post_vote.post_id, 2)
+      @receivers = pickReceivers(@owner, @post_vote.post_id, $number_of_sends_at_upvote_post)
         if @receivers != nil
           @receivers.each do |receiver|
             @post_vote = PostVote.create(user_id: receiver.id, post_id: @post.id, vote: 0)
@@ -71,13 +71,12 @@ class PostVotesController < ApplicationController
       @num_of_not_received = User.count - (@alreadyReceived.count)
 
       # If there are enough who receiveres --> send nrOfReceivers users
+      potentialReceivers = User.where.not(id: @alreadyReceived)
       if @num_of_not_received >= nrOfReceivers
-        potentialReceivers = User.where.not(id: @alreadyReceived)
         @receivers = potentialReceivers.sample(nrOfReceivers)
       end
       # If there are receivers, but not as many as nrOfReceivers --> send to rest of users
       else if @num_of_not_received < nrOfReceivers and @num_of_not_received > 0
-        potentialReceivers = User.where.not(id: @alreadyReceived)
         @receivers = potentialReceivers.sample(@num_of_not_received)
       end
 
