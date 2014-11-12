@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141107050830) do
+ActiveRecord::Schema.define(version: 20141112001344) do
 
   create_table "inboxes", force: true do |t|
     t.integer  "user_id"
@@ -30,7 +30,6 @@ ActiveRecord::Schema.define(version: 20141107050830) do
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "image_url"
     t.integer  "upvotecount"
     t.integer  "downvotecount"
     t.datetime "postdate"

@@ -13,12 +13,10 @@
 <p>
   <strong>Image:</strong>
   <p>
-  <img src=<%= @post.image_url %>>
+    <%= image_tag @post.image.url %>
   </p>
 </p>
-<p>
-  <%= image_tag @post.image.url %>
-</p>
+
 <p>
   <strong>Upvotecount:</strong>
   <%= @post.upvotecount %>

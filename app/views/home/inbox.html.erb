@@ -18,7 +18,6 @@
       <tr>
         <td><%= post_vote.user.email %></td>
         <td><%= post_vote.post.title %></td>
-        <td><%= post_vote.post.image_url %></td>
         <td><%= link_to 'Show', post_vote %></td>
         <td><%= link_to 'Edit', edit_post_vote_path(post_vote) %></td>
         <td><%= link_to 'Destroy', post_vote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
