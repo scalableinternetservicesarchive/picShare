@@ -20,9 +20,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    #@post = Post.new(post_params)
-    #@post.user = current_user
-    @post = current_user.posts.build(post_params)
+    @params = post_params
+    @params[:postdate] = Time.now
+    @post = current_user.posts.build(@params)
     @post.save
     @receivers = pickReceivers(@post.user_id, $number_of_sends_at_create_post)
     @receivers.each do |receiver|  
@@ -48,7 +48,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :description, :image_url, :upvotecount, :downvotecount, :postdate, :user_id, :image)
+      params.require(:post).permit(:title, :description, :image, :upvotecount, :downvotecount, :postdate, :user_id)
     end
 
     def pickReceivers(post_owner, nrOfReceivers)

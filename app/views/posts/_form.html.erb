@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
@@ -23,18 +22,7 @@
     <%= f.label :image %><br>
     <%= f.file_field :image %>
   </div>
-  <div class="field">
-    <%= f.label :upvotecount %><br>
-    <%= f.number_field :upvotecount %>
-  </div>
-  <div class="field">
-    <%= f.label :downvotecount %><br>
-    <%= f.number_field :downvotecount %>
-  </div>
-  <div class="field">
-    <%= f.label :postdate %><br>
-    <%= f.datetime_select :postdate %>
-  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
