@@ -56,10 +56,9 @@ class PostsController < ApplicationController
       potentialReceivers = User.where.not(id: post_owner)
       if potentialReceivers.count >= nrOfReceivers
         @receivers = potentialReceivers.sample(nrOfReceivers)
+      elsif potentialReceivers.count < nrOfReceivers and potentialReceivers.count > 0
+        @receivers = potentialReceivers.sample(potentialReceivers.count)
       end
-    else if potentialReceivers.count < nrOfReceivers and potentialReceivers > 0
-      @receivers = potentialReceivers.sample(potentialReceivers.count)
-    end
 
       return @receivers
     end

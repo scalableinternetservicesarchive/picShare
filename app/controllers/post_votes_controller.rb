@@ -74,11 +74,13 @@ class PostVotesController < ApplicationController
       potentialReceivers = User.where.not(id: @alreadyReceived)
       if @num_of_not_received >= nrOfReceivers
         @receivers = potentialReceivers.sample(nrOfReceivers)
-      end
       # If there are receivers, but not as many as nrOfReceivers --> send to rest of users
-      else if @num_of_not_received < nrOfReceivers and @num_of_not_received > 0
+      elsif @num_of_not_received < nrOfReceivers and @num_of_not_received > 0
         @receivers = potentialReceivers.sample(@num_of_not_received)
+      else
+        @receivers = nil;
       end
+
 
       return @receivers
     end
