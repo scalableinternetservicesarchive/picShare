@@ -2,17 +2,17 @@
 <style>
 th, td {
   padding: 10px;
-  text-align: center;
 }
 </style>
 </head>
-<h1>Home#inbox</h1>
-<p>Find me in app/views/home/inbox.html.erb</p>
-<table>
+<h1>Inbox</h1>
+
+<!--
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Title</th>
       <th>Image</th>
+      <th>Title</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,12 +20,23 @@ th, td {
   <tbody>
     <% @post_votes.each do |post_vote| %>
       <tr>
+        <td><%= link_to (image_tag post_vote.post.image.url(:thumb)), edit_post_vote_path(post_vote), :class => 'img-responsive' %></td>
         <td><%= post_vote.post.title %></td>
-        <td><%= image_tag post_vote.post.image.url(:thumb) %></td>
-        <td><%= link_to 'Vote', edit_post_vote_path(post_vote), class: 'btn btn-default' %></td>
+        <td><%= link_to 'Show', edit_post_vote_path(post_vote), class: 'btn btn-default' %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+-->
+
+<% @post_votes.each do |post_vote| %>
+<div class="col-xs-12 col-md-6">
+  <h3><%= post_vote.post.title %></h3>
+  <div class="well">
+    <%= link_to (image_tag post_vote.post.image.url(:original), :class => 'img-responsive'), edit_post_vote_path(post_vote) %>
+    <%= post_vote.post.description %>
+  </div>
+</div>
+<% end %>
 
 <br>
