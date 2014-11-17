@@ -1,16 +1,13 @@
-<h1>Editing post_vote</h1>
-<p>
-  <strong>Title:</strong>
+<h1>
   <%= @post_vote.post.title %>
+</h1>
+
+<p>
+  <%= image_tag @post_vote.post.image.url, :class => "img-responsive" %>
 </p>
 
 <p>
-  <strong>Image:</strong>
-  <%= image_tag @post_vote.post.image.url %>
-</p>
-
-<p>
-  <strong>Description:</strong>
+  <strong>Description:</strong><br>
   <%= @post_vote.post.description %>
 </p>
 
