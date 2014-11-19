@@ -39,4 +39,8 @@ th, td {
 </div>
 <% end %>
 
+<% if @post_votes.empty? %>
+  <h4>Your inbox is empty.</h4>
+<% end %>
+
 <br>

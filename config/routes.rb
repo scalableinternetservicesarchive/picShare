@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   get 'home/myposts'
 
+  get 'home/topposts'
+
 
   get 'welcome/index'
 

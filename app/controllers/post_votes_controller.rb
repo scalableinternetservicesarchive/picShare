@@ -54,12 +54,14 @@ class PostVotesController < ApplicationController
 
   def upvote
     @post_vote.update_attribute(:vote, 1)
+    updateVote(@post_vote)
     redirect_to home_inbox_path
   end
   helper_method :upvote
 
   def downvote
     @post_vote.update_attribute(:vote, -1)
+    updateVote(@post_vote)
     redirect_to home_inbox_path
   end
   helper_method :downvote
@@ -72,6 +74,24 @@ class PostVotesController < ApplicationController
     def post_vote_params
       #params[:post_vote]
       params.require(:post_vote).permit(:user_id, :post_id, :vote)
+    end
+
+    def updateVote(post_vote)
+      @post = post_vote.post
+      @owner = @post.user_id
+      if post_vote.vote == 1
+        @post.update(upvotecount: @post.upvotecount + 1) 
+      
+        @receivers = pickReceivers(@owner, post_vote.post_id, $number_of_sends_at_upvote_post)
+        if @receivers != nil
+          @receivers.each do |receiver|
+            @post_vote = PostVote.create(user_id: receiver.id, post_id: @post.id, vote: 0)
+            @post_vote.save
+          end
+        end
+      else
+        @post.update(downvotecount: @post.downvotecount+1)
+      end
     end
 
     def pickReceivers(post_owner, post_id, nrOfReceivers)
@@ -92,7 +112,6 @@ class PostVotesController < ApplicationController
       else
         @receivers = nil;
       end
-
 
       return @receivers
     end
