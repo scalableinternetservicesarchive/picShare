@@ -2,7 +2,12 @@ Rails.application.routes.draw do
 
   resources :inboxes
 
-  resources :post_votes
+  resources :post_votes do
+    collection do
+      get :upvote
+      get :downvote
+    end
+  end
 
   resources :posts
 
@@ -16,6 +21,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   get 'home/index'
+
   resources :home
 
   devise_for :users

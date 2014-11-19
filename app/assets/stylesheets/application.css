@@ -14,6 +14,10 @@
  *= require_self
  */
 
+/*
+ *= require font-awesome
+ */
+
 body { 
 	/*background-color: #F09C00;
 	text-align: center;

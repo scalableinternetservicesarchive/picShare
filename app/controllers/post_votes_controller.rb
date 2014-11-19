@@ -1,5 +1,5 @@
 class PostVotesController < ApplicationController
-  before_action :set_post_vote, only: [:show, :edit, :update, :destroy]
+  before_action :set_post_vote, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   respond_to :html, :xml
 
   def index
@@ -51,6 +51,18 @@ class PostVotesController < ApplicationController
     @post_vote.destroy
     respond_with(@post_vote)
   end
+
+  def upvote
+    @post_vote.update_attribute(:vote, 1)
+    redirect_to home_inbox_path
+  end
+  helper_method :upvote
+
+  def downvote
+    @post_vote.update_attribute(:vote, -1)
+    redirect_to home_inbox_path
+  end
+  helper_method :downvote
 
   private
     def set_post_vote

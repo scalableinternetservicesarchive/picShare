@@ -10,7 +10,14 @@
   <strong>Description:</strong><br>
   <%= @post_vote.post.description %>
 </p>
-
+<!--
 <p>
   <%= render 'form' %>
 </p>
+-->
+<!--
+<%= link_to "Upvote", :controller => "post_votes", :action => "upvote", :id => @post_vote %>
+<%= link_to "Downvote", :controller => "post_votes", :action => "downvote", :id => @post_vote %>
+-->
+<a href=<%= url_for :controller => "post_votes", :action => "upvote", :id => @post_vote %> class="btn btn-success btn-vote"><i class="fa fa-arrow-up"></i></a>
+<a href=<%= url_for :controller => "post_votes", :action => "downvote", :id => @post_vote %> class="btn btn-danger btn-vote"><i class="fa fa-arrow-down"></i></a>
