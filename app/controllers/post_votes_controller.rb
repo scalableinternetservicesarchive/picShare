@@ -101,6 +101,7 @@ class PostVotesController < ApplicationController
       @alreadyReceived.push(post_owner)
 
       @num_of_not_received = User.count - (@alreadyReceived.count)
+      nrOfReceivers = @num_of_not_received/4
 
       # If there are enough who receiveres --> send nrOfReceivers users
       potentialReceivers = User.where.not(id: @alreadyReceived)
