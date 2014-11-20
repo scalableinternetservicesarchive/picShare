@@ -11,6 +11,10 @@ class HomeController < ApplicationController
   	@posts = Post.where(user_id: current_user)
   end
 
+  def topposts
+    @posts = Post.order('upvoteCount - downvoteCount DESC').limit(10)
+  end
+
   def index
   end
 end

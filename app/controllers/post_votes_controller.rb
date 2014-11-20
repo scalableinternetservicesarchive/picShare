@@ -1,5 +1,5 @@
 class PostVotesController < ApplicationController
-  before_action :set_post_vote, only: [:show, :edit, :update, :destroy]
+  before_action :set_post_vote, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   respond_to :html, :xml
 
   def index
@@ -52,6 +52,20 @@ class PostVotesController < ApplicationController
     respond_with(@post_vote)
   end
 
+  def upvote
+    @post_vote.update_attribute(:vote, 1)
+    updateVote(@post_vote)
+    redirect_to home_inbox_path
+  end
+  helper_method :upvote
+
+  def downvote
+    @post_vote.update_attribute(:vote, -1)
+    updateVote(@post_vote)
+    redirect_to home_inbox_path
+  end
+  helper_method :downvote
+
   private
     def set_post_vote
       @post_vote = PostVote.find(params[:id])
@@ -62,6 +76,24 @@ class PostVotesController < ApplicationController
       params.require(:post_vote).permit(:user_id, :post_id, :vote)
     end
 
+    def updateVote(post_vote)
+      @post = post_vote.post
+      @owner = @post.user_id
+      if post_vote.vote == 1
+        @post.update(upvotecount: @post.upvotecount + 1) 
+      
+        @receivers = pickReceivers(@owner, post_vote.post_id, $number_of_sends_at_upvote_post)
+        if @receivers != nil
+          @receivers.each do |receiver|
+            @post_vote = PostVote.create(user_id: receiver.id, post_id: @post.id, vote: 0)
+            @post_vote.save
+          end
+        end
+      else
+        @post.update(downvotecount: @post.downvotecount+1)
+      end
+    end
+
     def pickReceivers(post_owner, post_id, nrOfReceivers)
        # Ensure that potential receivers exludes: owner of post and past receivers
       @postVotes = PostVote.where(post_id: post_id)
@@ -69,6 +101,7 @@ class PostVotesController < ApplicationController
       @alreadyReceived.push(post_owner)
 
       @num_of_not_received = User.count - (@alreadyReceived.count)
+      nrOfReceivers = @num_of_not_received/4
 
       # If there are enough who receiveres --> send nrOfReceivers users
       potentialReceivers = User.where.not(id: @alreadyReceived)
@@ -80,7 +113,6 @@ class PostVotesController < ApplicationController
       else
         @receivers = nil;
       end
-
 
       return @receivers
     end

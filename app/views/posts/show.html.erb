@@ -1,20 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
+<h1>
   <%= @post.title %>
+</h1>
+<p>
+  Posted
+  <%= @post.postdate.strftime('%b %d, %Y %I:%M %p') %>
+</p>
+<p>
+  <%= image_tag @post.image.url, :class => "img-responsive" %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Description:</strong><br>
   <%= @post.description %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <p>
-    <%= image_tag @post.image.url %>
-  </p>
 </p>
 
 <p>
@@ -26,10 +25,3 @@
   <strong>Downvotecount:</strong>
   <%= @post.downvotecount %>
 </p>
-
-<p>
-  <strong>Postdate:</strong>
-  <%= @post.postdate %>
-</p>
-
-<%= link_to 'My posts', home_myposts_path, class: 'btn btn-default' %>

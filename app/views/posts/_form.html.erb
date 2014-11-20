@@ -1,3 +1,10 @@
+<head>
+<style>
+  .form-control{
+    margin-bottom: 15px;
+  }
+</style>
+</head>
 <%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
@@ -10,20 +17,31 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <form class="form-horizontal">
+  <fieldset>
+    <div class="form-group">
+      <%= f.label :title, :class => 'col-lg-2 control-label' %>
+      <div class="col-lg-10">
+        <%= f.text_field :title, :class => 'form-control', :placeholder => 'Title' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :description, :class => 'col-lg-2 control-label' %>
+      <div class="col-lg-10">
+        <%= f.text_area :description, :class => 'form-control', :rows => '3' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :image, :class => 'col-lg-2 control-label' %>
+      <div class="col-lg-10">
+        <%= f.file_field :image, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="actions col-lg-10 col-lg-offset-2">
+        <%= f.submit 'Create Post', :class => 'btn btn-primary' %>
+      </div>
+    </div>
+  </fieldset>
+</form>
 <% end %>

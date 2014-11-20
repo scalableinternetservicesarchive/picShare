@@ -1,19 +1,18 @@
-<h1>Editing post_vote</h1>
-<p>
-  <strong>Title:</strong>
-  <%= @post_vote.post.title %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= image_tag @post_vote.post.image.url %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @post_vote.post.description %>
-</p>
-
+<div class="col-xs-12 col-md-8 col-lg-6">
+  <h2><%= @post_vote.post.title %></h2>
+  <div class="well" style="padding-bottom: 10%">
+  	<%= image_tag @post_vote.post.image.url, :class => "img-responsive" %>
+	<p><%= @post_vote.post.description %></p>
+<!--
 <p>
   <%= render 'form' %>
 </p>
+-->
+<!--
+<%= link_to "Upvote", :controller => "post_votes", :action => "upvote", :id => @post_vote %>
+<%= link_to "Downvote", :controller => "post_votes", :action => "downvote", :id => @post_vote %>
+-->
+	<a href=<%= url_for :controller => "post_votes", :action => "upvote", :id => @post_vote %> class="col-xs-6 btn btn-success btn-vote"><i class="fa fa-arrow-up"></i></a>
+	<a href=<%= url_for :controller => "post_votes", :action => "downvote", :id => @post_vote %> class="col-xs-6 btn btn-danger btn-vote"><i class="fa fa-arrow-down"></i></a>
+</div>
+</div>
