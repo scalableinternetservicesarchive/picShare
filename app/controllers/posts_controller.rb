@@ -23,11 +23,13 @@ class PostsController < ApplicationController
     @params = post_params
     @params[:postdate] = Time.now
     @post = current_user.posts.build(@params)
-    @post.save
-    @receivers = pickReceivers(@post.user_id, $number_of_sends_at_create_post)
-    @receivers.each do |receiver|  
-      @post_vote = PostVote.create(user_id: receiver.id, post_id: @post.id, vote: 0)
-      @post_vote.save
+    if @post.save then
+      puts 'creating post votes'
+      @receivers = pickReceivers(@post.user_id, $number_of_sends_at_create_post)
+      @receivers.each do |receiver|  
+        @post_vote = PostVote.create(user_id: receiver.id, post_id: @post.id, vote: 0)
+        @post_vote.save
+      end
     end
     respond_with(@post)
   end
