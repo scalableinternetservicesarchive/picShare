@@ -48,6 +48,4 @@ gem 'paperclip', '~> 3.5.4'
 
 gem "font-awesome-rails"
 
-gem 'aws-sdk'
-
 gem 's3_direct_upload'
