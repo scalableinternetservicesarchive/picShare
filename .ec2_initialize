@@ -1,5 +1,2 @@
 sudo yum install -y ImageMagick
-sudo yum install -y libxml2 libxml2-devel libxslt libxslt-devel
-sudo gem nokogiri --use-system-libraries
-bundle
 rake db:seed
