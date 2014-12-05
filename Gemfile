@@ -48,6 +48,12 @@ gem 'paperclip', '~> 3.5.4'
 
 gem "font-awesome-rails"
 
-gem 'aws-sdk', '~> 2.0'
+gem 'libxml-ruby', '~> 2.7.0'
+
+gem 'libxslt-ruby', '~> 1.1.1'
+
+gem 'nokogiri', '~> 1.6.5'
+
+gem 'aws-sdk'
 
 gem 's3_direct_upload'
