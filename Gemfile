@@ -48,6 +48,10 @@ gem 'paperclip', '~> 3.5.4'
 
 gem "font-awesome-rails"
 
-#gem 'aws-sdk'
+system("sudo yum install -y libxml2 libxml2-devel libxslt libxslt-devel")
 
-#gem 's3_direct_upload'
+system("sudo gem install nokogiri -- --use-system-libraries")
+
+gem 'aws-sdk'
+
+gem 's3_direct_upload'
