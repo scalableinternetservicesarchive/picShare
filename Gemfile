@@ -52,6 +52,6 @@ system("sudo yum install -y libxml2 libxml2-devel libxslt libxslt-devel")
 
 system("sudo gem install nokogiri -- --use-system-libraries")
 
-#gem 'aws-sdk'
+gem 'aws-sdk'
 
 gem 's3_direct_upload'
