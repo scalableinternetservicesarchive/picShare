@@ -9,7 +9,6 @@ Bundler.require(*Rails.groups)
 module Picshare
   class Application < Rails::Application
 
-=begin
     config.paperclip_defaults = {
         :storage => :fog,
         :fog_credentials => {
@@ -20,7 +19,7 @@ module Picshare
         :fog_directory => 'cs290',
         :path => "picShare/:class/:attachment/:id/:style/:filename"
 }
-=end
+
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
