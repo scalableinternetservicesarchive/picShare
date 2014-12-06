@@ -23,7 +23,8 @@ Erik G. Jansen ([@janzh](https://github.com/janzh/))
 ![jansen photo](https://avatars3.githubusercontent.com/u/3796719?v=2&s=120)
 
 ## Reviewers
-  
+
+Andrew Mutz 
 ![amutz photo](https://avatars3.githubusercontent.com/u/919763?v=2&s=120)
 
 
