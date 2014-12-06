@@ -54,4 +54,6 @@ system("sudo gem install nokogiri -- --use-system-libraries")
 
 gem 'aws-sdk'
 
+gem 'fog'
+
 gem 's3_direct_upload'

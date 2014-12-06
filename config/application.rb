@@ -8,6 +8,17 @@ Bundler.require(*Rails.groups)
 
 module Picshare
   class Application < Rails::Application
+
+    config.paperclip_defaults = {
+        :storage => :fog,
+        :fog_credentials => {
+        :use_iam_profile => true,
+        :provider => 'AWS',
+        :region => 'us-west-2' 
+  },
+        :fog_directory => 'cs290',
+        :path => "picShare/"
+}
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
