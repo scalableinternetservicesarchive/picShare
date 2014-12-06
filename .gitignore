@@ -16,3 +16,6 @@
 /tmp
 
 /public/system/
+
+#aws.yml
+/config/aws.yml
