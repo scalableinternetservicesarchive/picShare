@@ -13,7 +13,7 @@ users = User.create([
 	{ email: 'testE@mail.com', password: '12345678', password_confirmation: '12345678'}])
 
 
-(0..5).each do |i|
-	p = Post.create([user_id: i, title:"Title!", description: "Desc_C3", image: File.open('http://placehold.it/640x640&text=Test%20Image'), postdate: Time.now)
+(1..5).each do |i|
+	p = Post.new([user_id: i, title:"Title!", description: "Desc_C3", image: File.open('http://placehold.it/640x640&text=Test%20Image'), postdate: Time.now)
 	p.save!
 end 
