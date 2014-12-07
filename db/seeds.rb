@@ -5,15 +5,30 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-users = User.create([
-	{ email: 'testA@mail.com', password: '12345678', password_confirmation: '12345678'},
-	{ email: 'testB@mail.com', password: '23456789', password_confirmation: '23456789'},
-	{ email: 'testC@mail.com', password: '34567890', password_confirmation: '34567890'},
-	{ email: 'testD@mail.com', password: '12345678', password_confirmation: '12345678'},
-	{ email: 'testE@mail.com', password: '12345678', password_confirmation: '12345678'}])
+userCount = 10
+postPrUserCount = 5
+postVotesPrPostCount = 3
 
+(1..userCount).each do |i| 
+	user = User.create(email: i.to_s+'@mail.com', password: '12345678', password_confirmation: '12345678')
+	(1..postPrUserCount).each do |j|
+		p = Post.create(user_id: i, title:"Title!", description: "Desc_C3", image: File.open('/home/ec2-user/app/kitty.jpg'), postdate: Time.now)
+			(1..postVotesPrPostCount).each do |k|
+				if k >= user.id then
+					break 
+				end
+				postVote = PostVote.create(user_id: k, post_id: p.id)
+		end
+	end
+end
 
+=begin
+	
 (1..5).each do |i|
-	p = Post.new([user_id: i, title:"Title!", description: "Desc_C3", image: File.open('http://placehold.it/640x640&text=Test%20Image'), postdate: Time.now)
-	p.save!
+	p = Post.create([{user_id: i, title:"Title!", description: "Desc_C3", image: File.open('C:\Users\Vikas\kitty.jpg'), postdate: Time.now}])
 end 
+
+=end
+
+#(1..5).each do 
+
