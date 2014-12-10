@@ -16,10 +16,7 @@ pic =File.open('/home/ec2-user/app/kitty.jpg')
 	(1..postPrUserCount).each do |j|
 		p = Post.create(user_id: i, title:"Title!", description: "Desc_C3", image: pic, postdate: Time.now)
 			(1..postVotesPrPostCount).each do |k|
-				if k >= user.id then
-					break 
-				end
-				postVote = PostVote.create(user_id: k, post_id: p.id)
+				postVote = PostVote.create(user_id: (i+k)%userCount, post_id: p.id)
 		end
 	end
 end
