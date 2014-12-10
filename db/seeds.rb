@@ -9,10 +9,12 @@ userCount = 10
 postPrUserCount = 5
 postVotesPrPostCount = 3
 
+pic =File.open('/home/ec2-user/app/kitty.jpg')
+
 (1..userCount).each do |i| 
 	user = User.create(email: i.to_s+'@mail.com', password: '12345678', password_confirmation: '12345678')
 	(1..postPrUserCount).each do |j|
-		p = Post.create(user_id: i, title:"Title!", description: "Desc_C3", image: File.open('/home/ec2-user/app/kitty.jpg'), postdate: Time.now)
+		p = Post.create(user_id: i, title:"Title!", description: "Desc_C3", image: pic, postdate: Time.now)
 			(1..postVotesPrPostCount).each do |k|
 				if k >= user.id then
 					break 
