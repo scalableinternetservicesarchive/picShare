@@ -85,6 +85,9 @@ class PostVotesController < ApplicationController
         @receivers = pickReceivers(@owner, post_vote.post_id, $number_of_sends_at_upvote_post)
         if @receivers != nil
           @receivers.each do |receiver|
+            if receiver.id == @post.user_id
+              break
+            end
             @post_vote = PostVote.create(user_id: receiver.id, post_id: @post.id, vote: 0)
             @post_vote.save
           end
@@ -96,24 +99,33 @@ class PostVotesController < ApplicationController
 
     def pickReceivers(post_owner, post_id, nrOfReceivers)
        # Ensure that potential receivers exludes: owner of post and past receivers
-      @postVotes = PostVote.where(post_id: post_id)
-      @alreadyReceived = @postVotes.map {|postVote| postVote.user_id}
-      @alreadyReceived.push(post_owner)
+      
+      #@postVotes = PostVote.where(post_id: post_id)
+      #@alreadyReceived = @postVotes.map {|postVote| postVote.user_id}
+      #@alreadyReceived.push(post_owner)
 
-      @num_of_not_received = User.count - (@alreadyReceived.count)
-      nrOfReceivers = @num_of_not_received/4
+      #@num_of_not_received = User.count - (@alreadyReceived.count)
+      #nrOfReceivers = @num_of_not_received/4
 
       # If there are enough who receiveres --> send nrOfReceivers users
-      potentialReceivers = User.where.not(id: @alreadyReceived)
-      if @num_of_not_received >= nrOfReceivers
-        @receivers = potentialReceivers.sample(nrOfReceivers)
+      #potentialReceivers = User.where.not(id: @alreadyReceived)
+      #if @num_of_not_received >= nrOfReceivers
+      #  @receivers = potentialReceivers.sample(nrOfReceivers)
       # If there are receivers, but not as many as nrOfReceivers --> send to rest of users
-      elsif @num_of_not_received < nrOfReceivers and @num_of_not_received > 0
-        @receivers = potentialReceivers.sample(@num_of_not_received)
-      else
-        @receivers = nil;
-      end
-
-      return @receivers
+      #elsif @num_of_not_received < nrOfReceivers and @num_of_not_received > 0
+      #  @receivers = potentialReceivers.sample(@num_of_not_received)
+      #else
+      #  @receivers = nil;
+      #end
+      sql = "SELECT id
+              FROM users
+              WHERE id NOT IN (
+                SELECT user_id 
+                FROM post_votes
+                WHERE post_id=="+post_id.to_s+") 
+              ORDER BY RAND()
+              LIMIT "+nrOfReceivers.to_s
+      receivers = ActiveRecord::Base.connection.execute(sql)
+      return receivers
     end
 end

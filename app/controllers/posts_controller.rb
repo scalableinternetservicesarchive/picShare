@@ -27,6 +27,9 @@ class PostsController < ApplicationController
       puts 'creating post votes'
       @receivers = pickReceivers(@post.user_id, $number_of_sends_at_create_post)
       @receivers.each do |receiver|  
+        if receiver.id == @post.user_id
+          break
+        end
         @post_vote = PostVote.create(user_id: receiver.id, post_id: @post.id, vote: 0)
         @post_vote.save
       end
@@ -54,14 +57,9 @@ class PostsController < ApplicationController
     end
 
     def pickReceivers(post_owner, nrOfReceivers)
-      # Ensure that potential receivers exludes owner of post
-      potentialReceivers = User.where.not(id: post_owner)
-      if potentialReceivers.count >= nrOfReceivers
-        @receivers = potentialReceivers.sample(nrOfReceivers)
-      elsif potentialReceivers.count < nrOfReceivers and potentialReceivers.count > 0
-        @receivers = potentialReceivers.sample(potentialReceivers.count)
-      end
-
-      return @receivers
+      #potentialReceivers = User.where.not(id: post_owner)
+      sql = "SELECT id FROM users ORDER BY RAND() LIMIT "+nrOfReceivers.to_s
+      receivers = ActiveRecord::Base.connection.execute(sql)
+      return receivers
     end
 end
