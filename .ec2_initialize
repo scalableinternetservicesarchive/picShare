@@ -1,1 +1,2 @@
 sudo yum install -y ImageMagick
+rake db:seed
