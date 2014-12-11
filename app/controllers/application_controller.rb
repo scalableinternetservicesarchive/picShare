@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
   # Number of receivers to resend post to when user decides to upvote the received post
   $number_of_sends_at_upvote_post = 2;
 
+  #This is a check for the systemcalls in Gemfile, which will make sure that the system calls runs only once
+  $installsystemcall = true
+
   # Redirect to Inbox after successful sign_in
   def after_sign_in_path_for(resource_or_scope)
   	home_inbox_path

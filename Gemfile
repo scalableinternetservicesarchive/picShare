@@ -47,10 +47,11 @@ gem 'devise'
 gem 'paperclip', '~> 3.5.4'
 
 gem "font-awesome-rails"
-
+	
 system("sudo yum install -y libxml2 libxml2-devel libxslt libxslt-devel")
 
 system("sudo gem install nokogiri -- --use-system-libraries")
+
 
 gem 'aws-sdk'
 
