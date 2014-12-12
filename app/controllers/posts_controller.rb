@@ -27,10 +27,10 @@ class PostsController < ApplicationController
       puts 'creating post votes'
       @receivers = pickReceivers(@post.user_id, $number_of_sends_at_create_post)
       @receivers.each do |receiver|  
-        if receiver["id"] == @post.user_id
+        if receiver[0] == @post.user_id
           next
         end
-        @post_vote = PostVote.create(user_id: receiver["id"], post_id: @post.id, vote: 0)
+        @post_vote = PostVote.create(user_id: receiver[0], post_id: @post.id, vote: 0)
         @post_vote.save
       end
     end
