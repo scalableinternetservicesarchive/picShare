@@ -16,3 +16,7 @@
 /tmp
 
 /public/system/
+
+#aws.yml
+/config/aws.yml
+/config/initializers/paperclip.rb
