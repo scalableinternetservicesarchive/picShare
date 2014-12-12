@@ -8,11 +8,11 @@ class HomeController < ApplicationController
   end
 
   def myposts
-  	@posts = Post.includes(:image, :title, :postdate, :upvotecount, :downvotecount).where(user_id: current_user)
+  	@posts = Post.where(user_id: current_user)
   end
 
   def topposts
-    @posts = Post.includes(:image, :title, :postdate, :upvotecount, :downvotecount).order('upvoteCount - downvoteCount DESC').limit(10)
+    @posts = Post.order('upvoteCount - downvoteCount DESC').limit(10)
   end
 
   def index
