@@ -122,7 +122,7 @@ class PostVotesController < ApplicationController
               WHERE id NOT IN (
                 SELECT user_id 
                 FROM post_votes
-                WHERE post_id=="+post_id.to_s+") 
+                WHERE post_id="+post_id.to_s+") 
               ORDER BY RAND()
               LIMIT "+nrOfReceivers.to_s
       receivers = ActiveRecord::Base.connection.execute(sql)
