@@ -85,10 +85,10 @@ class PostVotesController < ApplicationController
         @receivers = pickReceivers(@owner, post_vote.post_id, $number_of_sends_at_upvote_post)
         if @receivers != nil
           @receivers.each do |receiver|
-            if receiver.id == @post.user_id
-              break
+            if receiver["id"] == @post.user_id
+              next
             end
-            @post_vote = PostVote.create(user_id: receiver.id, post_id: @post.id, vote: 0)
+            @post_vote = PostVote.create(user_id: receiver["id"], post_id: @post.id, vote: 0)
             @post_vote.save
           end
         end
