@@ -85,10 +85,10 @@ class PostVotesController < ApplicationController
         @receivers = pickReceivers(@owner, post_vote.post_id, $number_of_sends_at_upvote_post)
         if @receivers != nil
           @receivers.each do |receiver|
-            if receiver[0] == @post.user_id
+            if receiver == @post.user_id
               next
             end
-            @post_vote = PostVote.create(user_id: receiver[0], post_id: @post.id, vote: 0)
+            @post_vote = PostVote.create(user_id: receiver, post_id: @post.id, vote: 0)
             @post_vote.save
           end
         end
@@ -117,15 +117,18 @@ class PostVotesController < ApplicationController
       #else
       #  @receivers = nil;
       #end
-      sql = "SELECT id
-              FROM users
-              WHERE id NOT IN (
-                SELECT user_id 
-                FROM post_votes
-                WHERE post_id="+post_id.to_s+") 
-              ORDER BY RAND()
-              LIMIT "+nrOfReceivers.to_s
-      receivers = ActiveRecord::Base.connection.execute(sql)
+      #sql = "SELECT id
+      #        FROM users
+      #        WHERE id NOT IN (
+      #          SELECT user_id 
+      #          FROM post_votes
+      #          WHERE post_id="+post_id.to_s+") 
+      #        ORDER BY RAND()
+      #        LIMIT "+nrOfReceivers.to_s
+      #receivers = ActiveRecord::Base.connection.execute(sql)
+      randomUserIds = User.select('id').order('RAND()').first(nrOfReceivers).map {|user| user.id};
+      alreadyReceived = PostVote.select('user_id').where(post_id: post_id).map {|postVote| postVote.user_id};
+      receivers = randomUserIds - alreadyReceived - [post_owner];
       return receivers
     end
 end
