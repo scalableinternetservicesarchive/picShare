@@ -16,8 +16,9 @@ p_original = Post.create(user_id: 1, title:"Title!", description: "Desc_C3", ima
 	user = User.create(email: i.to_s+'@mail.com', password: '12345678', password_confirmation: '12345678')
 	(1..postPrUserCount).each do |j|
 		p = Post.create(user_id: i, title:"Title!", description: "Desc_C3", image: p_original.image, postdate: Time.now)
-			(1..postVotesPrPostCount).each do |k|
-				postVote = PostVote.create(user_id: (i+k)%userCount, post_id: p.id)
+		(1..postVotesPrPostCount).each do |k|
+			break if (i-k < 1)
+			postVote = PostVote.create(user_id: i-k, post_id: p.id)
 		end
 	end
 end
