@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # Number of receivers to send a new post to
-  $number_of_sends_at_create_post = 2;
+  $number_of_sends_at_create_post = 10;
   # Number of receivers to resend post to when user decides to upvote the received post
-  $number_of_sends_at_upvote_post = 2;
+  $number_of_sends_at_upvote_post = 10;
 
   # Redirect to Inbox after successful sign_in
   def after_sign_in_path_for(resource_or_scope)
