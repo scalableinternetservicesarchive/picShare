@@ -3,8 +3,8 @@ class Post < ActiveRecord::Base
 	has_many :post_votes
 	has_many :users, through: :post_votes
 	
-	has_attached_file :image#,
-		#:styles => { :original => "640x640>", :thumb => "100x100>" } 
+	has_attached_file :image,
+		:styles => { :original => "640x640>", :thumb => "100x100>" } 
 		#:storage => :s3,
 		#:s3_credentials => "#{Rails.root}/config/aws.yml",
 		#:path => "picShare/:class/:attachment/:id/:style/:filename",

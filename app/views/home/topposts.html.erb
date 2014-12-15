@@ -20,7 +20,7 @@ th, td {
   <tbody>
   	<% @posts.each do |post| %>
       <tr>
-        <td><%= image_tag post.image.url(:original), :class => 'img-responsive' %></td>
+        <td><%= image_tag post.image.url(:thumb), :class => 'img-responsive' %></td>
         <td><%= post.title %></td>
         <td><%= post.postdate.strftime('%b %d, %Y') %></td>
         <td>+<%= post.upvotecount %>, -<%= post.downvotecount %></td>
